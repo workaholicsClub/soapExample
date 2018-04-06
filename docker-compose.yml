@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 8081:80
+    volumes:
+      - "./public:/var/www/public"
+      - "./etc/nginx/site.conf:/etc/nginx/conf.d/default.conf"
+    depends_on:
+      - php
+
+  php:
+    image: php:7.1-fpm
+    build:
+      context: "."
+      dockerfile: "./etc/php/Dockerfile"
+    working_dir: "/var/www"
+    environment:
+      - XDEBUG_CONFIG=remote_host=${HOST_IP}
+
+    volumes:
+      - ".:/var/www"
+      - "./etc/php/log-stdout.conf:/usr/local/etc/php-fpm.d/zz-log.conf"
+      - "./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+      - "./etc/php/pdo_sqlite.ini:/usr/local/etc/php/conf.d/pdo_sqlite.ini"

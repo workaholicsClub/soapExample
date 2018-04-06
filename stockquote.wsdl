@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:p1="urn:eldorado.ru:holodilnik.ru:CEI" name="HolodilnikRU" targetNamespace="urn:eldorado.ru:holodilnik.ru:CEI">
+	<wsdl:documentation/>
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:eldorado.ru:holodilnik.ru:CEI" targetNamespace="urn:eldorado.ru:holodilnik.ru:CEI">
+			<xsd:element name="GetOperationResult_Resp_MT" type="GetOperationResult_Resp_DT"/>
+			<xsd:element name="SetFinalOrder_Resp_MT" type="Response_DT"/>
+			<xsd:element name="GetOrder_Req_MT" type="GetOrder_Req_DT"/>
+			<xsd:element name="GetOrder_Resp_MT" type="GetOrder_Resp_DT"/>
+			<xsd:element name="GetMaterialData_Resp_MT" type="GetMaterialData_Resp_DT"/>
+			<xsd:element name="SetOrderChange_Resp_MT" type="Response_DT"/>
+			<xsd:element name="SetDeleteOrder_Req_MT" type="SetDeleteOrder_Req_DT"/>
+			<xsd:element name="SetSignOrder_Req_MT" type="SetSignOrder_Req_DT"/>
+			<xsd:element name="SetOrderCreate_Resp_MT" type="Response_DT"/>
+			<xsd:element name="SetFinalOrder_Req_MT" type="SetFinalOrder_Req_DT"/>
+			<xsd:element name="GetOperationResult_Req_MT" type="GetOperationResult_Req_DT"/>
+			<xsd:element name="GetMaterialData_Req_MT" type="GetMaterialData_Req_DT"/>
+			<xsd:element name="SetOrderChange_Req_MT" type="SetOrderChange_Req_DT"/>
+			<xsd:element name="GetItemsAvail_Resp_MT" type="GetItemsAvail_Resp_DT"/>
+			<xsd:element name="SetSignOrder_Resp_MT" type="Response_DT"/>
+			<xsd:element name="GetExcludedDates_Resp_MT" type="GetExcludedDates_Resp_DT"/>
+			<xsd:element name="SetOrderCreate_Req_MT" type="SetOrderCreate_Req_DT"/>
+			<xsd:element name="GetExcludedDates_Req_MT" type="GetExcludedDates_Req_DT"/>
+			<xsd:element name="GetItemsAvail_Req_MT" type="GetItemsAvail_Req_DT"/>
+			<xsd:element name="SetDeleteOrder_Resp_MT" type="Response_DT"/>
+			<xsd:complexType name="GetMaterialData_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="MaterialID">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер материала
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetMaterialData_Resp_DT">
+				<xsd:sequence>
+					<xsd:element name="MaterialText" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+                     наименование материала
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="MaterialGroup">
+						<xsd:annotation>
+							<xsd:documentation>
+                     группа материала
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="18"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="UnitOfMeasurement">
+						<xsd:annotation>
+							<xsd:documentation>
+                     единицы измерения
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MaterialCharacteristics">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица с характеристиками материала
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="CharName">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       название характеристики
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="40"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="CharValue" type="xsd:string">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       значение характеристики
+                                       </xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetExcludedDates_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="Date_From" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     начальная дата интервала
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Date_To" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     конечная дата интервала
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetItemsAvail_Resp_DT">
+				<xsd:sequence>
+					<xsd:element name="Material_Tab">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица со списком материалов и доступным количеством
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="AvailableCount">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       доступное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetOperationResult_Resp_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="DocumentNumber">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер документа поставщика
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="10"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="PurchaseOrderNumber">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер закупочного заказа Эльдорадо (заполняется только при получении результата метода SetFinalOrder)
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="10"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation> 
+														зарезервированное количество
+													</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="PosResult">
+												<xsd:annotation>
+													<xsd:documentation> 
+														Результат обработки позиции (0 – успешно, 1 – ошибка)
+													</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:minInclusive value="0"/>
+														<xsd:maxInclusive value="1"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="PosError" type="xsd:string" minOccurs="0" maxOccurs="1">
+												<xsd:annotation>
+													<xsd:documentation>
+														Если PosResult = 1, содержит сообщение об ошибке по позиции
+													</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка, 2 – запрос еще обрабатывается)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetOperationResult_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="OperationID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+                     уникальный идентификатор операции
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Response_DT">
+				<xsd:sequence>
+					<xsd:element name="OperationID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+                     уникальный идентификатор операции
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SetOrderCreate_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="Werks">
+						<xsd:annotation>
+							<xsd:documentation>
+                     код завода (склада) поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     дата заказа
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       затребованное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetOrder_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SetSignOrder_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа для подтверждения
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       затребованное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="NewOrderDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     дата заказа для переноса позиций
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ItemsForTransfer">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа для переноса в новый заказ
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       затребованное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetItemsAvail_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="Werks">
+						<xsd:annotation>
+							<xsd:documentation>
+                     код склада поставщика (используется кодировка Эльдорадо)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Date" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     дата на которую требуется получить доступность товара
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="MaterialID_Tab">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица номеров материалов
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="MaterialGroup_Tab">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица групп материалов
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialGroup">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       группа материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="18"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetOrder_Resp_DT">
+				<xsd:sequence>
+					<xsd:element name="OrderDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>
+                     дата заказа
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       зарезервированное в заказе количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SetDeleteOrder_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SetOrderChange_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер материала
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       затребованное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="9"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetExcludedDates_Resp_DT">
+				<xsd:sequence>
+					<xsd:element name="ExcludedDate_Tab">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица дат-исключений
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="ExcludedDate" type="xsd:date"/>
+											<xsd:element name="ExcludedCode">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       код Поставщика БСТ (соответствует коду Поставщика в «Эльдорадо»), или код завода (соответствует коду завода в «Эльдорадо»)
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="10"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Result">
+						<xsd:annotation>
+							<xsd:documentation>
+                     результат запроса (0 – успешно, 1 – ошибка)
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:integer">
+								<xsd:minInclusive value="0"/>
+								<xsd:maxInclusive value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>
+                     в случае ошибки, содержит сообщение об ошибке
+                     </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SetFinalOrder_Req_DT">
+				<xsd:sequence>
+					<xsd:element name="DocumentNumber">
+						<xsd:annotation>
+							<xsd:documentation>
+                     номер документа поставщика
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderItems">
+						<xsd:annotation>
+							<xsd:documentation>
+                     таблица позиций заказа с указанием номеров закупочных заказов Эльдорадо
+                     </xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="PurchaseOrderNumber">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер закупочного заказа Эльдорадо
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="10"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="MaterialID">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       номер материала
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="35"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="MaterialText">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       краткий текст материала Эльдорадо
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="40"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Quantity">
+												<xsd:annotation>
+													<xsd:documentation>
+                                       затребованное количество
+                                       </xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:integer">
+														<xsd:totalDigits value="10"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="SetFinalOrder_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetFinalOrder_Req_MT" element="p1:SetFinalOrder_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetFinalOrder_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetFinalOrder_Resp_MT" element="p1:SetFinalOrder_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetMaterialData_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetMaterialData_Req_MT" element="p1:GetMaterialData_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetMaterialData_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetMaterialData_Resp_MT" element="p1:GetMaterialData_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetItemsAvail_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetItemsAvail_Req_MT" element="p1:GetItemsAvail_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetItemsAvail_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetItemsAvail_Resp_MT" element="p1:GetItemsAvail_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetExcludedDates_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetExcludedDates_Req_MT" element="p1:GetExcludedDates_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetExcludedDates_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetExcludedDates_Resp_MT" element="p1:GetExcludedDates_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetDeleteOrder_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetDeleteOrder_Req_MT" element="p1:SetDeleteOrder_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetDeleteOrder_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetDeleteOrder_Resp_MT" element="p1:SetDeleteOrder_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetSignOrder_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetSignOrder_Req_MT" element="p1:SetSignOrder_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetSignOrder_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetSignOrder_Resp_MT" element="p1:SetSignOrder_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrderChange_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetOrderChange_Req_MT" element="p1:SetOrderChange_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrderChange_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetOrderChange_Resp_MT" element="p1:SetOrderChange_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetOrder_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetOrder_Req_MT" element="p1:GetOrder_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetOrder_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetOrder_Resp_MT" element="p1:GetOrder_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetOperationResult_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetOperationResult_Req_MT" element="p1:GetOperationResult_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="GetOperationResult_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="GetOperationResult_Resp_MT" element="p1:GetOperationResult_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrderCreate_Req_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetOrderCreate_Req_MT" element="p1:SetOrderCreate_Req_MT"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrderCreate_Resp_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="SetOrderCreate_Resp_MT" element="p1:SetOrderCreate_Resp_MT"/>
+	</wsdl:message>
+	<wsdl:portType name="pt1">
+		<wsdl:documentation/>
+		<wsdl:operation name="SetFinalOrder">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:SetFinalOrder_Req_MT"/>
+			<wsdl:output message="p1:SetFinalOrder_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetMaterialData">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:GetMaterialData_Req_MT"/>
+			<wsdl:output message="p1:GetMaterialData_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetItemsAvail">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:GetItemsAvail_Req_MT"/>
+			<wsdl:output message="p1:GetItemsAvail_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetExcludedDates">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:GetExcludedDates_Req_MT"/>
+			<wsdl:output message="p1:GetExcludedDates_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetDeleteOrder">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:SetDeleteOrder_Req_MT"/>
+			<wsdl:output message="p1:SetDeleteOrder_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetSignOrder">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:SetSignOrder_Req_MT"/>
+			<wsdl:output message="p1:SetSignOrder_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrderChange">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:SetOrderChange_Req_MT"/>
+			<wsdl:output message="p1:SetOrderChange_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:GetOrder_Req_MT"/>
+			<wsdl:output message="p1:GetOrder_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetOperationResult">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:GetOperationResult_Req_MT"/>
+			<wsdl:output message="p1:GetOperationResult_Resp_MT"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrderCreate">
+			<wsdl:documentation/>
+			<wsdl:input message="p1:SetOrderCreate_Req_MT"/>
+			<wsdl:output message="p1:SetOrderCreate_Resp_MT"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="bind" type="p1:pt1">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+		<wsdl:operation name="SetFinalOrder">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMaterialData">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetItemsAvail">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetExcludedDates">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetDeleteOrder">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetSignOrder">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrderChange">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrderCreate">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOperationResult">
+			<soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+</wsdl:definitions>
