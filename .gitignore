@@ -2,3 +2,4 @@
 soapClientExample.iml
 .env
 vendor/
+/clover.xml

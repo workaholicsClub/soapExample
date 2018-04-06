@@ -2,24 +2,9 @@
 
 namespace StockQuote;
 
-/**
- *
- * @struct OrderItem {
- *     @type string          "MaterialID"      номер материала
- *     @type string          "Quantity"        зарезервированное в заказе количество
- * }
-
- * @struct GetOrderRequest {
- *     @type string          "DocumentNumber"  номер документа поставщика
- * }
- *
- * @struct GetOrderResponse {
- *     @type string          "OrderDate"       дата заказа
- *     @type `OrderItem`[]   "OrderItems"      таблица позиций заказа
- *     @type integer         "Result"          результат запроса (0 – успешно, 1 – ошибка)
- *     @type string          "ErrorMessage"    в случае ошибки, содержит сообщение об ошибке
- * }
- */
+use StockQuote\RequestTypes\GetOrderRequest;
+use StockQuote\ResponseTypes\GetOrderResponse;
+use StockQuote\ResponseTypes\OrderItem;
 
 /**
  * Class RequestHandler
@@ -32,59 +17,80 @@ class RequestHandler implements RequestHandlerInterface
     const RESULT_SUCCESS = 0;
     const RESULT_ERROR = 1;
 
-    public function SetFinalOrder(array $request): array {
+    private function convertToRequestClass($requestClass, $request) {
+        return new $requestClass((array) $request);
+    }
+
+    public function SetFinalOrder(\stdClass $request): DTO {
         // TODO: Implement SetFinalOrder() method.
     }
 
-    public function GetMaterialData(array $request): array {
+    public function GetMaterialData(\stdClass $request): DTO {
         // TODO: Implement GetMaterialData() method.
     }
 
-    public function GetItemsAvail(array $request): array {
+    public function GetItemsAvail(\stdClass $request): DTO {
         // TODO: Implement GetItemsAvail() method.
     }
 
-    public function GetExcludedDates(array $request): array {
+    public function GetExcludedDates(\stdClass $request): DTO {
         // TODO: Implement GetExcludedDates() method.
     }
 
-    public function SetDeleteOrder(array $request): array {
+    public function SetDeleteOrder(\stdClass $request): DTO {
         // TODO: Implement SetDeleteOrder() method.
     }
 
-    public function SetSignOrder(array $request): array {
+    public function SetSignOrder(\stdClass $request): DTO {
         // TODO: Implement SetSignOrder() method.
     }
 
-    public function SetOrderChange(array $request): array {
+    public function SetOrderChange(\stdClass $request): DTO {
         // TODO: Implement SetOrderChange() method.
     }
 
     /**
-     * @param `GetOrderRequest` $request
-     * @return `GetOrderResponse`
+     * @param \stdClass $request
+     * @return GetOrderResponse
      */
-    public function GetOrder(array $request): array {
-        $orderId = $request['DocumentNumber'];
+    public function GetOrder(\stdClass $request): GetOrderResponse {
+        /**
+         * @var GetOrderRequest $request
+         */
+        $request = $this->convertToRequestClass(GetOrderRequest::class, $request);
 
-        $item = [
-            'MaterialID' => '9daf13cc-3694-49d1-ad30-16a21d7935ed',
-            'Quantity'   => 3,
-        ];
+        $orderId = $request->DocumentNumber;
 
-        return [
-            "OrderDate"    => "2018-04-06 20:30:40",
-            "OrderItems"   => [$item],
-            "Result"       => self::RESULT_SUCCESS,
-            "ErrorMessage" => "",
-        ];
+        if ($orderId === '1234567890') {
+            $item = new OrderItem([
+                'MaterialID' => '9daf13cc-3694-49d1-ad30-16a21d7935ed',
+                'Quantity'   => 3,
+            ]);
+
+            $response = new GetOrderResponse([
+                "OrderDate"    => "2018-04-06 20:30:40",
+                "OrderItems"   => [$item],
+                "Result"       => self::RESULT_SUCCESS,
+                "ErrorMessage" => "",
+            ]);
+        }
+        else {
+            $response = new GetOrderResponse([
+                "OrderDate"    => "",
+                "OrderItems"   => [],
+                "Result"       => self::RESULT_ERROR,
+                "ErrorMessage" => "Заказ не найден",
+            ]);
+        }
+
+        return $response;
     }
 
-    public function SetOrderCreate(array $request): array {
+    public function SetOrderCreate(\stdClass $request): DTO {
         // TODO: Implement SetOrderCreate() method.
     }
 
-    public function GetOperationResult(array $request): array {
+    public function GetOperationResult(\stdClass $request): DTO {
         // TODO: Implement GetOperationResult() method.
     }
 }
