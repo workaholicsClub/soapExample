@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:p1="urn:eldorado.ru:holodilnik.ru:CEI" name="HolodilnikRU" targetNamespace="urn:eldorado.ru:holodilnik.ru:CEI">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:p1="urn:eldorado.ru:holodilnik.ru:CEI"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="HolodilnikRU"
+				  targetNamespace="urn:eldorado.ru:holodilnik.ru:CEI">
 	<wsdl:documentation/>
 	<wsdl:types>
 		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:eldorado.ru:holodilnik.ru:CEI" targetNamespace="urn:eldorado.ru:holodilnik.ru:CEI">
@@ -1150,4 +1152,9 @@
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
+	<wsdl:service name="StockQuoteWSDL">
+		<wsdl:port name="StockQuotePort" binding="bind">
+            <soap:address location="http://localhost/index.php" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>
